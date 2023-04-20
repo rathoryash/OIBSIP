@@ -1,0 +1,97 @@
+package com.yash;
+
+
+import java.util.Scanner;
+
+    public class online_reservation_oasis_infobyte {
+
+        private static final String USERNAME = "yash";
+        private static final String PASSWORD = "12345";
+
+        public static void main(String[] args) {
+
+            Scanner scanner = new Scanner(System.in);
+            boolean isLoggedIn = false;
+
+            while (!isLoggedIn) {
+                System.out.println("Login Form");
+                System.out.println("Please enter your username: ");
+                String username = scanner.nextLine();
+
+                System.out.println("Please enter your password: ");
+                String password = scanner.nextLine();
+
+                if (username.equals(USERNAME) && password.equals(PASSWORD)) {
+                    isLoggedIn = true;
+                    System.out.println("Login successful!");
+                } else {
+                    System.out.println("Invalid username or password. Please try again.");
+                }
+            }
+
+            while (isLoggedIn) {
+                System.out.println("Please select an option: ");
+                System.out.println("1. Reservation Form");
+                System.out.println("2. Cancellation Form");
+                System.out.println("3. Logout");
+
+                int option = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (option) {
+                    case 1:
+                        System.out.println("Reservation Form");
+
+                        System.out.println("Please enter your name: ");
+                        String name = scanner.nextLine();
+
+                        System.out.println("Please enter your age: ");
+                        int age = scanner.nextInt();
+                        scanner.nextLine();
+
+                        System.out.println("Please enter the train number: ");
+                        int trainNumber = scanner.nextInt();
+                        scanner.nextLine();
+
+                        System.out.println("Please enter the class type: ");
+                        String classType = scanner.nextLine();
+
+                        System.out.println("Please enter the date of journey (DD/MM/YYYY): ");
+                        String dateOfJourney = scanner.nextLine();
+
+                        System.out.println("Please enter the Place of Journey: ");
+                        String origin = scanner.nextLine();
+
+                        System.out.println("Please enter the destination: ");
+                        String destination = scanner.nextLine();
+
+                        System.out.println("Reservation successful!");
+                        break;
+                    case 2:
+                        System.out.println("Cancellation Form");
+
+                        System.out.println("Please enter your name: ");
+                        name = scanner.nextLine();
+
+                        System.out.println("Please enter the train number: ");
+                        trainNumber = scanner.nextInt();
+                        scanner.nextLine();
+
+                        System.out.println("Please enter the date of journey (DD/MM/YYYY): ");
+                        dateOfJourney = scanner.nextLine();
+
+                        System.out.println("Cancellation successful!");
+                        break;
+                    case 3:
+                        isLoggedIn = false;
+                        System.out.println("Logout successful!");
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                        break;
+                }
+            }
+        }
+    }
+
+
