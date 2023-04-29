@@ -1,0 +1,111 @@
+package com.yash;
+
+import java.util.*;
+
+public class Atm_interface {
+
+    private static Scanner scanner = new Scanner(System.in);
+    private static double balance = 1000.0;
+    private static ArrayList<String> transactions = new ArrayList<>();
+
+    public static void main(String[] args) {
+
+        int choice = 0;
+        do {
+            System.out.println("Please select an option:");
+            System.out.println("1. Transactions History");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Deposit");
+            System.out.println("4. Transfer");
+            System.out.println("5. Quit");
+
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    showTransactionHistory();
+                    break;
+                case 2:
+                    withdraw();
+                    break;
+                case 3:
+                    deposit();
+                    break;
+                case 4:
+                    transfer();
+                    break;
+                case 5:
+                    System.out.println("Thank you for using our ATM.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+            System.out.println();
+
+        } while (choice != 5);
+
+    }
+
+    private static void showTransactionHistory() {
+        System.out.println("Transaction history:");
+        for (String transaction : transactions) {
+            System.out.println(transaction);
+        }
+        System.out.println("Current balance: " + balance);
+    }
+
+    private static void withdraw() {
+        System.out.println("Please enter the amount to withdraw:");
+        double amount = scanner.nextDouble();
+        scanner.nextLine();
+
+        if (amount <= 0) {
+            System.out.println("Invalid amount. Please try again.");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance. Please try again.");
+        } else {
+            balance -= amount;
+            String transaction = String.format("Withdrawn: $%.2f", amount);
+            transactions.add(transaction);
+            System.out.println("Transaction successful.");
+        }
+    }
+
+    private static void deposit() {
+        System.out.println("Please enter the amount to deposit:");
+        double amount = scanner.nextDouble();
+        scanner.nextLine();
+
+        if (amount <= 0) {
+            System.out.println("Invalid amount. Please try again.");
+        } else {
+            balance += amount;
+            String transaction = String.format("Deposited: $%.2f", amount);
+            transactions.add(transaction);
+            System.out.println("Transaction successful.");
+        }
+    }
+
+    private static void transfer() {
+        System.out.println("Please enter the account number to transfer to:");
+        String accountNumber = scanner.nextLine();
+
+        System.out.println("Please enter the amount to transfer:");
+        double amount = scanner.nextDouble();
+        scanner.nextLine();
+
+        if (amount <= 0) {
+            System.out.println("Invalid amount. Please try again.");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance. Please try again.");
+        } else {
+            balance -= amount;
+            String transaction = String.format("Transferred: $%.2f to account %s", amount, accountNumber);
+            transactions.add(transaction);
+            System.out.println("Transaction successful.");
+        }
+    }
+
+}
